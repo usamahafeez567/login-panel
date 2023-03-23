@@ -12,7 +12,7 @@ export default function Signup(props) {
 
   function validate() {
     let errors = {};
-    let matchErrors ={};
+    let matchError ={};
 
     if (!name.trim()) {
       errors.name = "Name is Required";
