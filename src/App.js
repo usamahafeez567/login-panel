@@ -1,35 +1,23 @@
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Signup from "./Signup";
+import Login from "./Login";
 import { useState } from "react";
 
-export default function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log("Email: ", email);
-    console.log("Password: ", password);
-  }
+export default function App() {
+  const [currentForm, setCurrentForm] = useState("signup");
+
+  const toggleForm = (formCurr) => {
+    setCurrentForm(formCurr);
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Email:
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </label>
-      <br />
-      <button type="submit">Submit</button>
-    </form>
+    <div className="App">
+      {currentForm === "signup" ? (
+        <Signup onFormSwitch={toggleForm} />
+      ) : (
+        <Login onFormSwitch={toggleForm} />
+      )}
+    </div>
   );
 }
